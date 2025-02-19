@@ -9,7 +9,7 @@ exports.getAll = async (req, res, next) => {
 
     let canchaId = req.params.canchaId;
     let whereCondition= {};
-    if (canchaId) {
+    if (canchaId && canchaId !== "undefined" && canchaId !== "null") {  
         whereCondition.id = canchaId;
     }
     const canchas = await Cancha.findAll({

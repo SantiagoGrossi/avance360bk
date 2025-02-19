@@ -7,7 +7,7 @@ const { validationResult } = require('express-validator');
 exports.getAll = async (req, res, next) => {
     let eid = req.params.eid;
     let whereCondition= {};
-    if (eid) {
+    if (eid && eid !== "undefined" && eid !== "null") {
         whereCondition.id = eid;
     }
     const establecimientos = await Establecimiento.findAll({
