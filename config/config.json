@@ -1,0 +1,32 @@
+{
+  "development": {
+    "username": "srdb",
+    "password": "turnospsw",
+    "database": "srdb",
+    "host": "awsdbhost",
+    "dialect": "mysql",
+    "dialectOptions": {
+      "connectTimeout": 60000
+    }
+  },
+  "test": {
+    "username": "root",
+    "password": "root",
+    "database": "srdb",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "dialectOptions": {
+      "connectTimeout": 60000
+    }
+  },
+  "production": {
+    "username": "srdb",
+    "password": "turnospsw",
+    "database": "srdb",
+    "host": "awsdbhost",
+    "dialect": "mysql",
+    "dialectOptions": {
+      "connectTimeout": 60000
+    }
+  }
+}
