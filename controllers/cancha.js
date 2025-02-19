@@ -7,10 +7,10 @@ const { validationResult } = require('express-validator');
 
 exports.getAll = async (req, res, next) => {
 
-    let id = req.params.id;
+    let canchaId = req.params.canchaId;
     let whereCondition= {};
-    if (id) {
-        whereCondition.id = id;
+    if (canchaId) {
+        whereCondition.id = canchaId;
     }
     const canchas = await Cancha.findAll({
       where: whereCondition,

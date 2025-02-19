@@ -5,10 +5,10 @@ const { validationResult } = require('express-validator');
 
 
 exports.getAll = async (req, res, next) => {
-    let id = req.params.id;
+    let eid = req.params.eid;
     let whereCondition= {};
-    if (id) {
-        whereCondition.id = id;
+    if (eid) {
+        whereCondition.id = eid;
     }
     const establecimientos = await Establecimiento.findAll({
     where: whereCondition,
