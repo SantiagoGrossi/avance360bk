@@ -6,6 +6,8 @@ const session = require('express-session');
 const mysql = require('mysql2/promise');
 const MySQLStore = require('express-mysql-session')(session);
 const turnos = require('./routes/turnos.js');
+const canchas = require('./routes/cancha.js');
+const establecimientos = require('./routes/establecimiento.js');
 
 const sequelize = require('./util/database');
 
@@ -93,7 +95,9 @@ if(process.env.NODE_ENV =="production"){
     });  
 }
 
-app.use('/turnos', turnos); // rutas para cada api
+app.use('/turnos', turnos); 
+app.use('/canchas', canchas); 
+app.use('/establecimientos', establecimientos);
 
 app.use((error,req, res, next)=> {
     console.log(error);
