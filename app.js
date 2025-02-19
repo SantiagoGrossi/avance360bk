@@ -112,7 +112,7 @@ require('./models/associations'); //asociacions de clases para sequelize
 
 
 sequelize.sync().then(result =>{//mantener en false y usar migraciones
-  app.listen(3001);
+  app.listen(3000);
 
 }).catch(err =>{
   console.log(err)
