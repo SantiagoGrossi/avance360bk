@@ -5,9 +5,7 @@ const path = require('path');
 const session = require('express-session');
 const mysql = require('mysql2/promise');
 const MySQLStore = require('express-mysql-session')(session);
-const turnos = require('./routes/turnos.js');
-const canchas = require('./routes/cancha.js');
-const establecimientos = require('./routes/establecimiento.js');
+const obrasRoutes = require('./routes/obra.js');
 
 const sequelize = require('./util/database');
 
@@ -20,50 +18,21 @@ const app = express();
 const dbOptions = {
 	host: 'localhost',
 	port: 3306,
-	user: 'srdb',
-	password: 'psw',
-	database: 'turnosdb',
+	user: 'root',
+	password: 'root',
+	database: 'avance360',
     
 };
 
-
-const fileStorage = multer.diskStorage({
-    destination: (req, file, cb) =>{
-        cb(null, 'images');
-    },
-    filename: (req, file, cb) =>{
-        cb (null,new Date().toISOString()+ '-'+ file.originalname);
-    }
-
-})
-const filefilter = (req,file, cb) =>{
-    if(file.mimetype === 'image/png' || file.mimetype === 'image/jpg' || file.mimetype === 'image/jpeg'){
-        cb(null, true);
-
-    }else{
-        cb (null, false)
-    }
-}
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname,'public')));
 
-const sessionStore = new MySQLStore(dbOptions);
 
-const TWO_HOURS = 1000 * 60 * 60 * 2
-
-app.use(session({
-	key: 'session_cookie_name',
-	secret: 'sportsreelsupersecret',
-	store: sessionStore,
-	resave: false,
-	saveUninitialized: false,
-    secure: false,
-}));
 app.use(bodyParser.json());
 app.use('/images',express.static(path.join(__dirname, 'images')));
 require('request').defaults({ rejectUnauthorized: false })
-var allowedDomains = ['http://sportsreel.com.ar', 'https://sportsreel.com.ar',
-'www.sportsreel.com.ar', 'https://www.sportsreel.com.ar'];
+var allowedDomains = ['http://avance360.com.ar', 'https://avance360.com.ar',
+'www.avance360.com.ar', 'https://www.avance360.com.ar'];
 
 
 app.use((req, res, next) => {
@@ -95,9 +64,7 @@ if(process.env.NODE_ENV =="production"){
     });  
 }
 
-app.use('/turnos', turnos); 
-app.use('/canchas', canchas); 
-app.use('/establecimientos', establecimientos);
+app.use('/obra', obrasRoutes); 
 
 app.use((error,req, res, next)=> {
     console.log(error);

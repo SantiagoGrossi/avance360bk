@@ -1,6 +1,6 @@
 const Sequelize = require('sequelize');
 
-const sequelize = new Sequelize('turnos', 'root', 'Sumorenito19!',{
+const sequelize = new Sequelize('avance360', 'root', 'root',{
     dialect: 'mysql',
     host: 'localhost',
     dialectOptions: {
